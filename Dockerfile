@@ -11,7 +11,7 @@
 # --- Base: shared image with pnpm available -----------------------------------
 FROM node:22-alpine AS base
 # pnpm is pinned to the major version used in development.
-RUN npm install -g pnpm@11 --quiet
+RUN npm install -g pnpm@9.15.0 --quiet
 
 # --- Deps: install all dependencies ------------------------------------------
 FROM base AS deps
