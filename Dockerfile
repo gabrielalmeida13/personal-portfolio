@@ -25,7 +25,7 @@ COPY package.json pnpm-lock.yaml ./
 RUN pnpm config set fetch-retries 5 \
  && pnpm config set fetch-retry-mintimeout 20000 \
  && pnpm config set fetch-timeout 600000 \
- && pnpm install --frozen-lockfile
+ && pnpm install --frozen-lockfile --config.ignore-scripts=false
 
 # --- Builder: compile the application ----------------------------------------
 FROM base AS builder
