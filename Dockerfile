@@ -18,8 +18,14 @@ FROM base AS deps
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml ./
-# --frozen-lockfile: fail fast if lock file is out of sync with package.json
-RUN pnpm install --frozen-lockfile
+# Increase timeouts and retries for slow/unstable network connections.
+# fetch-timeout: 600000 ms (10 min) per request before aborting.
+# fetch-retries: retry a failed request up to 5 times.
+# fetch-retry-mintimeout: 20000 ms minimum wait between retries.
+RUN pnpm config set fetch-retries 5 \
+ && pnpm config set fetch-retry-mintimeout 20000 \
+ && pnpm config set fetch-timeout 600000 \
+ && pnpm install --frozen-lockfile
 
 # --- Builder: compile the application ----------------------------------------
 FROM base AS builder
