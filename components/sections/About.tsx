@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 type TimelineEntry = {
@@ -64,16 +65,19 @@ export function About() {
         {/* --- Bio + Photo --- */}
         <div className="mb-20 grid grid-cols-1 gap-12 lg:grid-cols-[1fr_2fr] lg:items-start">
 
-          {/* Photo placeholder */}
+          {/* Profile photo */}
           <div
             data-reveal
-            className="aspect-square w-full max-w-[320px] overflow-hidden rounded-lg border border-border bg-background-secondary"
+            className="relative aspect-square w-full max-w-[320px] overflow-hidden rounded-xl border border-border/50 shadow-[0_0_32px_-8px_hsl(var(--color-primary)/0.25)]"
           >
-            <div className="flex h-full w-full items-center justify-center">
-              <span className="font-mono text-xs text-foreground-muted">
-                [ photo ]
-              </span>
-            </div>
+            <Image
+              src="/images/foto_eu.jpg"
+              alt="Gabriel Almeida"
+              fill
+              sizes="(max-width: 1024px) 100vw, 320px"
+              className="object-cover object-top"
+              priority
+            />
           </div>
 
           {/* Bio */}
