@@ -1,0 +1,25 @@
+# Docker Compose configuration for local / home-server deployment.
+# Usage:
+#   docker compose up --build -d   -- build and start in background
+#   docker compose logs -f         -- follow logs
+#   docker compose down            -- stop and remove container
+
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gabriel-portfolio:latest
+    container_name: portfolio
+    restart: unless-stopped
+    ports:
+      # host_port:container_port
+      - "3000:3000"
+    env_file:
+      # Runtime secrets (Spotify, GitHub, Resend, Redis, etc.).
+      # The file is optional so `docker compose up` works even without it
+      # (the app will start but API routes that need secrets will degrade).
+      - path: .env.local
+        required: false
+    environment:
+      - NODE_ENV=production

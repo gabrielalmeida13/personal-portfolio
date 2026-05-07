@@ -1,0 +1,34 @@
+# Build artifacts -- re-generated inside the container
+.next
+node_modules
+
+# Version control
+.git
+.gitignore
+
+# Environment files -- secrets must never be baked into the image.
+# Pass them at runtime via docker-compose env_file or --env-file.
+.env
+.env.local
+.env.*.local
+
+# Keep the example file so the COPY . . in the builder stage includes it.
+!.env.example
+
+# Development-only files
+*.md
+docs/
+darksideofthemoon.jpg
+abstract_design.glb
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Docker files (not needed inside the image)
+Dockerfile*
+docker-compose*.yml
+.dockerignore

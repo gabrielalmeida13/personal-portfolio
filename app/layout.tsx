@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { LiveBar } from "@/components/layout/LiveBar";
 
 const geist = localFont({
   src: "../public/fonts/geist-variable.woff2",
@@ -24,8 +25,9 @@ const jetbrainsMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Gabriel Serens — Portfolio",
-  description: "Personal portfolio of Gabriel Serens, software developer.",
+  title: "Gabriel Almeida — Portfolio",
+  description:
+    "Personal portfolio of Gabriel Almeida, informatics engineering student and researcher at the University of Coimbra.",
 };
 
 export default function RootLayout({
@@ -39,7 +41,7 @@ export default function RootLayout({
       className={`${geist.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className="min-h-full flex flex-col bg-background text-foreground pb-10">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -49,6 +51,7 @@ export default function RootLayout({
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
+          <LiveBar />
         </ThemeProvider>
       </body>
     </html>
