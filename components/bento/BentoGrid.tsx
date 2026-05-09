@@ -12,7 +12,7 @@ import { ResearchBlockCollapsed, ResearchBlockExpanded } from "@/components/bent
 import { CTFBlockCollapsed, CTFBlockExpanded } from "@/components/bento/blocks/CTFBlock";
 import { JeKnowledgeBlockCollapsed, JeKnowledgeBlockExpanded } from "@/components/bento/blocks/JeKnowledgeBlock";
 import { GitHubBlockCollapsed, GitHubBlockExpanded } from "@/components/bento/blocks/GitHubBlock";
-import { SkillsBlock } from "@/components/bento/blocks/SkillsBlock";
+import { SkillsBlockCollapsed, SkillsBlockExpanded } from "@/components/bento/blocks/SkillsBlock";
 import { ContactBlock } from "@/components/bento/blocks/ContactBlock";
 import type { PinnedRepo } from "@/types";
 
@@ -24,6 +24,7 @@ function ExpandedContent({ id, repos }: { id: BlockId; repos: PinnedRepo[] }): R
     case "ctf":         return <CTFBlockExpanded />;
     case "jeknowledge": return <JeKnowledgeBlockExpanded />;
     case "github":      return <GitHubBlockExpanded repos={repos} />;
+    case "skills":      return <SkillsBlockExpanded />;
   }
 }
 
@@ -148,16 +149,21 @@ export function BentoGrid({ repos }: Props) {
           <GitHubBlockCollapsed repos={repos} />
         </motion.div>
 
-        {/* Skills — non-expandable */}
-        <div
+        {/* Skills — expandable */}
+        <motion.div
+          layoutId="block-skills"
+          animate={{ opacity: expandedId && expandedId !== "skills" ? 0.2 : 1 }}
+          transition={{ duration: 0.3 }}
+          onClick={() => !expandedId && expand("skills")}
           className={cn(
             "col-span-12 md:col-span-4 min-h-[140px]",
-            "transition-opacity duration-300",
-            expandedId ? "opacity-20" : "opacity-100"
+            "rounded-2xl border border-border/50 bg-card/20",
+            "transition-colors hover:border-primary/30",
+            expandedId ? "cursor-default" : "cursor-pointer"
           )}
         >
-          <SkillsBlock />
-        </div>
+          <SkillsBlockCollapsed />
+        </motion.div>
 
         {/* Contact — non-expandable */}
         <div
