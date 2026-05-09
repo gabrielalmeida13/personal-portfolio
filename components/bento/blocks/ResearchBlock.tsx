@@ -47,9 +47,9 @@ export function ResearchBlockExpanded() {
       <div className="grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-4">
         {[
           { label: "Period",       value: "Sep 2025 – Present" },
-          { label: "Target Venue", value: "ISSRE 2026" },
-          { label: "Role",         value: "Undergraduate Researcher" },
-          { label: "Dept.",        value: "DEI · CISUC" },
+          { label: "Venue",       value: "ISSRE 2026 (under review)" },
+          { label: "Role",        value: "Undergraduate Researcher" },
+          { label: "Institution", value: "UC / DEI / CISUC" },
         ].map(({ label, value }) => (
           <div key={label}>
             <p className="mb-1 font-mono text-[9px] uppercase tracking-widest text-foreground-muted">
@@ -63,11 +63,17 @@ export function ResearchBlockExpanded() {
       <hr className="my-6 border-border" />
 
       <p className="text-sm leading-relaxed text-foreground-muted">
-        Researching Software Diversity architecture to improve global system
-        performance and resilience. The core hypothesis explores how intentional
-        functional diversity — both human-designed and LLM-generated — can reduce
-        correlated failures in distributed systems and make software more adaptable
-        to novel conditions.
+        Conducting a large-scale empirical study on how to leverage Large Language
+        Models (LLMs) to significantly enhance software reliability and system
+        performance. Investigating human-AI collaboration strategies, demonstrating
+        that pairing human developers with LLM-generated code effectively mitigates
+        critical system failures.
+      </p>
+      <p className="mt-4 text-sm leading-relaxed text-foreground-muted">
+        Authored a research paper detailing the exponential reliability gains
+        achieved through these heterogeneous software pairings, currently under
+        double-blind review for the 37th IEEE International Symposium on Software
+        Reliability Engineering (ISSRE 2026).
       </p>
 
       <div className="mt-6">
