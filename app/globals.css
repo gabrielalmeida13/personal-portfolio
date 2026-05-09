@@ -141,7 +141,7 @@ body {
 }
 
 /* Hide site chrome when a bento block is expanded */
-body[data-bento-expanded] > * header,
+body[data-bento-expanded] header,
 body[data-bento-expanded] [role="complementary"] {
   display: none !important;
 }
