@@ -33,7 +33,7 @@ export function GitHubBlockCollapsed({ repos }: Props) {
   );
 }
 
-export function GitHubBlockExpanded({ repos, onClose }: Props & { onClose: () => void }) {
+export function GitHubBlockExpanded({ repos }: Props) {
   return (
     <div className="p-8">
       <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-green-400">

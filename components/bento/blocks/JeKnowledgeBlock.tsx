@@ -21,7 +21,7 @@ export function JeKnowledgeBlockCollapsed() {
   );
 }
 
-export function JeKnowledgeBlockExpanded({ onClose }: { onClose: () => void }) {
+export function JeKnowledgeBlockExpanded() {
   return (
     <div className="p-8">
       <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-amber-400">

@@ -7,8 +7,9 @@ type Props = {
 export function HeroBlock({ isAnyExpanded }: Props) {
   return (
     <motion.div
-      animate={{ opacity: isAnyExpanded ? 0 : 1 }}
+      animate={{ opacity: isAnyExpanded ? 0 : 1, pointerEvents: isAnyExpanded ? "none" : "auto" }}
       transition={{ duration: 0.25 }}
+      aria-hidden={isAnyExpanded}
       className="col-span-12 md:col-span-8 md:row-span-2 min-h-[280px] flex flex-col justify-between rounded-2xl border border-border/50 bg-card/20 p-6"
     >
       {/* Status */}

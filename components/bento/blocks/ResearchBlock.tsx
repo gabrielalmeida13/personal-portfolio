@@ -29,7 +29,7 @@ export function ResearchBlockCollapsed() {
   );
 }
 
-export function ResearchBlockExpanded({ onClose }: { onClose: () => void }) {
+export function ResearchBlockExpanded() {
   return (
     <div className="p-8">
       <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-primary">

@@ -43,7 +43,7 @@ export function CTFBlockCollapsed() {
   );
 }
 
-export function CTFBlockExpanded({ onClose }: { onClose: () => void }) {
+export function CTFBlockExpanded() {
   return (
     <div className="p-8">
       <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-green-400">
