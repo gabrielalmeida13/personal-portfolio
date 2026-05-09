@@ -41,13 +41,13 @@ export function HeroBlock({ isAnyExpanded }: Props) {
       {/* CTAs */}
       <div className="flex flex-wrap gap-2">
         <a
-          href="/#contact"
+          href="mailto:gabrielserens@gmail.com"
           className="rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
         >
           Contact
         </a>
         <a
-          href="/resume.pdf"
+          href="/cv.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="rounded-lg border border-border px-4 py-2 text-xs font-semibold text-foreground hover:bg-background-secondary transition-colors"
