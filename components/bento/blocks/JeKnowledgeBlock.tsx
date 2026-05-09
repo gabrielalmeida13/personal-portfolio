@@ -49,12 +49,20 @@ export function JeKnowledgeBlockExpanded() {
 
       <hr className="my-6 border-border" />
 
-      <p className="text-sm leading-relaxed text-foreground-muted">
-        Promoted from Trainee to Junior Developer within a dynamic junior enterprise
-        environment. Worked in cross-functional teams to build and deliver real-world
-        software solutions, gaining hands-on experience in a startup-like setting with
-        professional engineering standards.
-      </p>
+      <ul className="space-y-4 text-sm text-foreground-muted">
+        <li className="flex flex-col gap-1">
+          <span className="leading-relaxed">
+            Developed and maintained robust full-stack software solutions (React,
+            Ruby on Rails) within a dynamic, student-led tech environment.
+          </span>
+        </li>
+        <li className="flex flex-col gap-1">
+          <span className="leading-relaxed">
+            Promoted from Trainee to Junior Developer in under 3 months by rapidly
+            acquiring skills and delivering critical features for team projects.
+          </span>
+        </li>
+      </ul>
 
       <div className="mt-6 flex flex-wrap gap-2">
         {["React", "Node.js", "TypeScript", "Agile", "Team Collaboration"].map((t) => (
