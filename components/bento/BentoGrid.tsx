@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import type { BlockId } from "@/components/bento/types";
@@ -18,7 +18,7 @@ import type { PinnedRepo } from "@/types";
 
 type Props = { repos: PinnedRepo[] };
 
-function ExpandedContent({ id, repos }: { id: BlockId; repos: PinnedRepo[] }) {
+function ExpandedContent({ id, repos }: { id: BlockId; repos: PinnedRepo[] }): React.ReactElement {
   switch (id) {
     case "research":    return <ResearchBlockExpanded />;
     case "ctf":         return <CTFBlockExpanded />;
@@ -40,14 +40,15 @@ export function BentoGrid({ repos }: Props) {
     return () => document.body.removeAttribute("data-bento-expanded");
   }, [expandedId]);
 
-  // Escape key to close
+  // Escape key to close — only register listener when something is expanded
   useEffect(() => {
+    if (!expandedId) return;
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") setExpandedId(null);
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, []);
+  }, [expandedId]);
 
   const expand = (id: BlockId) => setExpandedId(id);
   const collapse = () => setExpandedId(null);
@@ -90,8 +91,9 @@ export function BentoGrid({ repos }: Props) {
           onClick={() => !expandedId && expand("ctf")}
           className={cn(
             "col-span-12 md:col-span-4 md:row-span-2 min-h-[220px]",
-            "cursor-pointer rounded-2xl border border-border/50 bg-[#0d1117]",
-            "transition-colors hover:border-green-500/30"
+            "rounded-2xl border border-border/50 bg-[#0d1117]",
+            "transition-colors hover:border-green-500/30",
+            expandedId ? "cursor-default" : "cursor-pointer"
           )}
         >
           <CTFBlockCollapsed />
@@ -105,8 +107,9 @@ export function BentoGrid({ repos }: Props) {
           onClick={() => !expandedId && expand("research")}
           className={cn(
             "col-span-12 md:col-span-6 md:row-span-2 min-h-[220px]",
-            "cursor-pointer rounded-2xl border border-primary/20 bg-card/20",
-            "transition-colors hover:border-primary/40"
+            "rounded-2xl border border-primary/20 bg-card/20",
+            "transition-colors hover:border-primary/40",
+            expandedId ? "cursor-default" : "cursor-pointer"
           )}
           style={{ background: "linear-gradient(135deg, hsl(var(--color-card)/0.2) 60%, rgba(59,130,246,0.04))" }}
         >
@@ -121,8 +124,9 @@ export function BentoGrid({ repos }: Props) {
           onClick={() => !expandedId && expand("jeknowledge")}
           className={cn(
             "col-span-12 md:col-span-6 md:row-span-2 min-h-[220px]",
-            "cursor-pointer rounded-2xl border border-border/50 bg-card/20",
-            "transition-colors hover:border-amber-500/30"
+            "rounded-2xl border border-border/50 bg-card/20",
+            "transition-colors hover:border-amber-500/30",
+            expandedId ? "cursor-default" : "cursor-pointer"
           )}
         >
           <JeKnowledgeBlockCollapsed />
@@ -135,9 +139,10 @@ export function BentoGrid({ repos }: Props) {
           transition={{ duration: 0.3 }}
           onClick={() => !expandedId && expand("github")}
           className={cn(
-            "col-span-12 md:col-span-4 md:row-span-2 min-h-[220px]",
-            "cursor-pointer rounded-2xl border border-border/50 bg-card/20",
-            "transition-colors hover:border-green-500/30"
+            "col-span-12 md:col-span-4 min-h-[140px]",
+            "rounded-2xl border border-border/50 bg-card/20",
+            "transition-colors hover:border-green-500/30",
+            expandedId ? "cursor-default" : "cursor-pointer"
           )}
         >
           <GitHubBlockCollapsed repos={repos} />

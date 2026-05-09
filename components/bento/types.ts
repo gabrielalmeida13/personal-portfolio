@@ -18,5 +18,5 @@ export const BLOCK_META: BlockMeta[] = [
   { id: "research",    label: "Research",     gridClass: "md:col-span-6 md:row-span-2" },
   { id: "ctf",         label: "CTF Lab",      gridClass: "md:col-span-4 md:row-span-2" },
   { id: "jeknowledge", label: "jeKnowledge",  gridClass: "md:col-span-6 md:row-span-2" },
-  { id: "github",      label: "GitHub",       gridClass: "md:col-span-4 md:row-span-2" },
+  { id: "github",      label: "GitHub",       gridClass: "md:col-span-4" },
 ];
