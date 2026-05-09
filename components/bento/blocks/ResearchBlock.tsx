@@ -33,57 +33,97 @@ export function ResearchBlockExpanded() {
   return (
     <div className="p-8">
       <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-primary">
-        Research · UC / DEI
+        Research
       </p>
       <h2 className="font-sans text-3xl font-bold leading-tight tracking-tight">
-        Software Diversity &<br />LLM Integration
+        Research Projects
       </h2>
-      <p className="mt-2 text-sm text-foreground-muted">
-        Departamento de Engenharia Informática · Universidade de Coimbra
-      </p>
 
       <hr className="my-6 border-border" />
 
-      <div className="grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-4">
-        {[
-          { label: "Period",       value: "Sep 2025 – Present" },
-          { label: "Venue",       value: "ISSRE 2026 (under review)" },
-          { label: "Role",        value: "Undergraduate Researcher" },
-          { label: "Institution", value: "UC / DEI / CISUC" },
-        ].map(({ label, value }) => (
-          <div key={label}>
-            <p className="mb-1 font-mono text-[9px] uppercase tracking-widest text-foreground-muted">
-              {label}
-            </p>
-            <p className="text-sm font-medium text-foreground">{value}</p>
+      {/* Project 1 */}
+      <div>
+        <p className="mb-1 font-mono text-[10px] uppercase tracking-widest text-primary">
+          LLM-based Software Reliability
+        </p>
+
+        <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-4">
+          {[
+            { label: "Period",      value: "Sep 2025 - Present" },
+            { label: "Venue",       value: "ISSRE 2026 (under review)" },
+            { label: "Organisation", value: "UC / DEI / CISUC" },
+          ].map(({ label, value }) => (
+            <div key={label}>
+              <p className="mb-1 font-mono text-[9px] uppercase tracking-widest text-foreground-muted">
+                {label}
+              </p>
+              <p className="text-sm font-medium text-foreground">{value}</p>
+            </div>
+          ))}
+        </div>
+
+        <p className="mt-5 text-sm leading-relaxed text-foreground-muted">
+          Conducting a large-scale empirical study on how to leverage Large Language
+          Models (LLMs) to significantly enhance software reliability and system
+          performance. Investigating human-AI collaboration strategies, demonstrating
+          that pairing human developers with LLM-generated code effectively mitigates
+          critical system failures.
+        </p>
+        <p className="mt-4 text-sm leading-relaxed text-foreground-muted">
+          The study evaluates 1-out-of-2 fault-tolerant configurations applying classical
+          reliability models (Eckhardt-Lee and Littlewood-Miller). It analyzes failure
+          overlap across three algorithmic specifications using 14 distinct LLMs and 4
+          programming languages (C, C++, Java, Pascal).
+        </p>
+
+        <div className="mt-5">
+          <p className="mb-3 font-mono text-[9px] uppercase tracking-widest text-foreground-muted">
+            Topics
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {["Software Diversity", "Fault Tolerance", "LLMs", "Reliability Engineering"].map((t) => (
+              <Chip key={t}>{t}</Chip>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
 
       <hr className="my-6 border-border" />
 
-      <p className="text-sm leading-relaxed text-foreground-muted">
-        Conducting a large-scale empirical study on how to leverage Large Language
-        Models (LLMs) to significantly enhance software reliability and system
-        performance. Investigating human-AI collaboration strategies, demonstrating
-        that pairing human developers with LLM-generated code effectively mitigates
-        critical system failures.
-      </p>
-      <p className="mt-4 text-sm leading-relaxed text-foreground-muted">
-        Authored a research paper detailing the exponential reliability gains
-        achieved through these heterogeneous software pairings, currently under
-        double-blind review for the 37th IEEE International Symposium on Software
-        Reliability Engineering (ISSRE 2026).
-      </p>
-
-      <div className="mt-6">
-        <p className="mb-3 font-mono text-[9px] uppercase tracking-widest text-foreground-muted">
-          Topics
+      {/* Project 2 */}
+      <div>
+        <p className="mb-1 font-mono text-[10px] uppercase tracking-widest text-primary">
+          Talentos@DEI Scholarship Program
         </p>
-        <div className="flex flex-wrap gap-2">
-          {["Software Diversity", "LLM Capabilities", "Systems Architecture", "Fault Tolerance", "Performance Optimization"].map((t) => (
-            <Chip key={t}>{t}</Chip>
+
+        <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-4">
+          {[
+            { label: "Period",       value: "Jan 2024 - Jul 2024" },
+            { label: "Organisation", value: "UC / DEI" },
+          ].map(({ label, value }) => (
+            <div key={label}>
+              <p className="mb-1 font-mono text-[9px] uppercase tracking-widest text-foreground-muted">
+                {label}
+              </p>
+              <p className="text-sm font-medium text-foreground">{value}</p>
+            </div>
           ))}
+        </div>
+
+        <p className="mt-5 text-sm leading-relaxed text-foreground-muted">
+          Awarded a Research Initiation Scholarship focused on implementing methods to
+          recognize and identify anomalous patterns in complex datasets.
+        </p>
+
+        <div className="mt-5">
+          <p className="mb-3 font-mono text-[9px] uppercase tracking-widest text-foreground-muted">
+            Topics
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {["Anomaly Detection", "Data Analysis"].map((t) => (
+              <Chip key={t}>{t}</Chip>
+            ))}
+          </div>
         </div>
       </div>
     </div>
