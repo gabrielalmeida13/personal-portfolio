@@ -11,11 +11,15 @@ const SKILL_GROUPS = [
   },
   {
     label: "Infrastructure / DevOps",
-    skills: ["Docker", "GitHub Actions", "Linux"],
+    skills: ["Docker", "GitHub Actions", "Linux", "Ollama"],
   },
   {
     label: "Security / Research",
     skills: ["Reverse Engineering", "Data Analysis", "LLM Prompting"],
+  },
+  {
+    label: "Languages",
+    skills: ["C", "C++", "Java"],
   },
 ];
 
