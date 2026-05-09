@@ -73,11 +73,29 @@ export function CTFBlockExpanded() {
 
       <hr className="my-6 border-border" />
 
-      <p className="text-sm leading-relaxed text-foreground-muted">
-        Developing technical challenges for Capture The Flag (CTF) competitions to
-        foster security awareness across the academic community. Competing
-        internationally in Reverse Engineering, Pwn, and Web security categories.
-      </p>
+      <ul className="space-y-4 text-sm text-foreground-muted">
+        <li className="flex flex-col gap-1">
+          <span className="font-semibold text-foreground">Challenge Development</span>
+          <span className="leading-relaxed">
+            Design and development of technical challenges for academic CTF
+            competitions, fostering security awareness among students and researchers.
+          </span>
+        </li>
+        <li className="flex flex-col gap-1">
+          <span className="font-semibold text-foreground">Competitive Performance</span>
+          <span className="leading-relaxed">
+            Compete in high-level international security competitions, solving complex
+            problems in Reverse Engineering, Pwn, and Web security categories.
+          </span>
+        </li>
+        <li className="flex flex-col gap-1">
+          <span className="font-semibold text-foreground">Digital Presence and Outreach</span>
+          <span className="leading-relaxed">
+            Manage the laboratory&apos;s social media channels and coordinate the
+            promotion of cybersecurity events and competitions.
+          </span>
+        </li>
+      </ul>
 
       <div className="mt-8">
         <p className="mb-4 font-mono text-[9px] uppercase tracking-widest text-foreground-muted">Skill Profile</p>
