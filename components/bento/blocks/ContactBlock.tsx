@@ -15,7 +15,7 @@ export function ContactBlock() {
           href="mailto:gabrielserens@gmail.com"
           className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-xs text-foreground-muted transition-colors hover:border-primary/40 hover:text-foreground"
         >
-          <span className="font-mono">✉</span> Email
+          Email
         </a>
         <a
           href="https://linkedin.com/in/gabriel-almeida"
@@ -23,7 +23,7 @@ export function ContactBlock() {
           rel="noopener noreferrer"
           className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-xs text-foreground-muted transition-colors hover:border-primary/40 hover:text-foreground"
         >
-          <span className="font-mono">↗</span> LinkedIn
+          LinkedIn
         </a>
       </div>
     </div>
