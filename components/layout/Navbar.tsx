@@ -16,7 +16,7 @@ export function Navbar() {
             Blog
           </a>
           <a
-            href="https://github.com/gbasilioFCT"
+            href="https://github.com/gabrielalmeida13"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub profile"
@@ -36,7 +36,7 @@ export function Navbar() {
             </svg>
           </a>
           <a
-            href="/resume.pdf"
+            href="/cv.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-lg border border-border px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-background-secondary transition-colors"

@@ -54,7 +54,7 @@ export async function fetchPinnedRepos(): Promise<PinnedRepo[]> {
       query: PINNED_REPOS_QUERY,
       variables: { login: username },
     }),
-    next: { revalidate: 3600 },
+    cache: "no-store",
   });
 
   if (!res.ok) {
