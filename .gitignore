@@ -42,3 +42,6 @@ next-env.d.ts
 CLAUDE.md
 PROJECTS.md
 .claude/
+
+# brainstorm visual companion sessions
+.superpowers/
