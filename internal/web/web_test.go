@@ -46,6 +46,19 @@ func TestIndexRendersWithoutCredentials(t *testing.T) {
 	}
 }
 
+// The healthcheck must stay independent of the upstreams: a Spotify outage
+// must not make the container look dead and trigger a restart loop.
+func TestHealthzIsIndependentOfUpstreams(t *testing.T) {
+	rec := get(t, newTestServer(t), "/healthz")
+
+	if rec.Code != http.StatusOK {
+		t.Fatalf("status = %d, want 200", rec.Code)
+	}
+	if strings.TrimSpace(rec.Body.String()) != "ok" {
+		t.Errorf("body = %q, want ok", rec.Body.String())
+	}
+}
+
 func TestPanelReturnsFragmentNotFullPage(t *testing.T) {
 	rec := get(t, newTestServer(t), "/panel/research")
 

@@ -114,7 +114,14 @@ fixed light source.
 
 ---
 
-## Notes
+## Deploying
 
-`Dockerfile.nextjs` is the previous Next.js image, kept until the old
-application is removed from the tree.
+Push to `main`. GitHub Actions runs the tests, builds the image, publishes it
+to GHCR and tells the droplet to pull it, then verifies `/healthz` answers
+before reporting success.
+
+The site is `https://gabriel-almeida.dev`, served by Caddy on a DigitalOcean
+droplet, proxying to the container on `localhost:3000`.
+
+See [`deploy/README.md`](deploy/README.md) for the one-time setup, rollback,
+and the production compose file.

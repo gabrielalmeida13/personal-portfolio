@@ -1,0 +1,31 @@
+# Production compose file. This lives at /opt/portfolio/docker-compose.yml on
+# the droplet and pulls a prebuilt image — the server never compiles anything.
+#
+# The repository root has its own docker-compose.yml which builds from source
+# instead; that one is for local and home-server use.
+
+services:
+  portfolio:
+    image: ghcr.io/gabrielalmeida13/personal-portfolio:latest
+    container_name: portfolio
+    restart: unless-stopped
+    ports:
+      # Bound to localhost: Caddy terminates TLS and proxies to it, so the
+      # application port is not reachable from the internet directly.
+      - "127.0.0.1:3000:3000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      - PORT=3000
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

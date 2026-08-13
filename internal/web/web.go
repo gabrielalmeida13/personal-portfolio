@@ -53,6 +53,7 @@ func (s *Server) Routes() http.Handler {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("GET /{$}", s.handleIndex)
+	mux.HandleFunc("GET /healthz", s.handleHealth)
 	mux.HandleFunc("GET /partials/now-playing", s.handleNowPlaying)
 	mux.HandleFunc("GET /panel/{id}", s.handlePanel)
 	mux.HandleFunc("GET /panel/close", s.handleClosePanel)
@@ -120,6 +121,15 @@ func (s *Server) handleIndex(w http.ResponseWriter, r *http.Request) {
 	}
 
 	s.render(w, "base", data)
+}
+
+// handleHealth answers the container healthcheck. It deliberately touches no
+// upstream: the site is considered healthy when it can serve, and Spotify or
+// GitHub being unreachable is a degraded page, not a dead one.
+func (s *Server) handleHealth(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+	w.Header().Set("Cache-Control", "no-store")
+	w.Write([]byte("ok\n"))
 }
 
 func (s *Server) handleNowPlaying(w http.ResponseWriter, r *http.Request) {
