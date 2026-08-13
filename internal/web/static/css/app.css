@@ -45,7 +45,7 @@
   --body: "Inter", ui-sans-serif, system-ui, sans-serif;
   --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --shell: 1180px;
+  --shell: 1440px;
   --radius: 10px;
 }
 
@@ -142,7 +142,7 @@ img { max-width: 100%; display: block; }
 .masthead {
   max-width: var(--shell);
   margin: 0 auto;
-  padding: clamp(3rem, 9vh, 6rem) clamp(1.15rem, 4vw, 2.5rem) clamp(2.5rem, 6vh, 4rem);
+  padding: clamp(3rem, 9vh, 6rem) clamp(1.15rem, 4vw, 3.5rem) clamp(2.5rem, 6vh, 4rem);
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   align-items: center;
@@ -162,7 +162,7 @@ img { max-width: 100%; display: block; }
 
 .lede {
   margin-top: 1.6rem;
-  max-width: 46ch;
+  max-width: 44ch;
   color: var(--dim);
   font-size: 1.02rem;
   line-height: 1.7;
@@ -237,7 +237,7 @@ img { max-width: 100%; display: block; }
 
 .platter {
   position: relative;
-  width: min(330px, 74vw);
+  width: min(380px, 74vw);
   aspect-ratio: 1;
 }
 
@@ -448,9 +448,9 @@ img { max-width: 100%; display: block; }
 .grid {
   max-width: var(--shell);
   margin: 0 auto;
-  padding: 0 clamp(1.15rem, 4vw, 2.5rem) clamp(3rem, 8vh, 5rem);
+  padding: 0 clamp(1.15rem, 4vw, 3.5rem) clamp(3rem, 8vh, 5rem);
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
   grid-auto-flow: row dense;
   gap: 14px;
 }
@@ -632,7 +632,7 @@ button.card:hover .card__cue { opacity: 1; }
 .footer {
   max-width: var(--shell);
   margin: 0 auto;
-  padding: 1.4rem clamp(1.15rem, 4vw, 2.5rem) 2.5rem;
+  padding: 1.4rem clamp(1.15rem, 4vw, 3.5rem) 2.5rem;
   border-top: 1px solid var(--line);
   display: flex;
   justify-content: space-between;
