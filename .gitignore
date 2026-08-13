@@ -45,3 +45,8 @@ PROJECTS.md
 
 # brainstorm visual companion sessions
 .superpowers/
+
+# go
+/bin/
+# separate repository (LaTeX CV)
+/personal-cv/

@@ -1,0 +1,57 @@
+{{define "turntable"}}
+<div class="turntable">
+  <div class="platter" id="platter" data-playing="{{if and .Track .Track.Playing}}true{{else}}false{{end}}">
+    <div class="record">
+      <span class="record__grooves" aria-hidden="true"></span>
+      <span class="record__sheen" aria-hidden="true"></span>
+      <span class="record__label">
+        <img class="record__art" id="record-art" alt=""
+             {{if and .Track .Track.ArtworkURL}}src="{{.Track.ArtworkURL}}"{{else}}hidden{{end}}>
+        <span class="record__mark" aria-hidden="true">33<sup>1</sup>&frasl;<sub>3</sub></span>
+      </span>
+      <span class="record__spindle" aria-hidden="true"></span>
+    </div>
+
+    <svg class="live-ring" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+      <circle cx="100" cy="100" r="97"/>
+    </svg>
+
+    <span class="tonearm" aria-hidden="true">
+      <span class="tonearm__pivot"></span>
+      <span class="tonearm__arm"></span>
+    </span>
+  </div>
+
+  {{template "readout" .}}
+</div>
+{{end}}
+
+{{define "readout"}}
+<div id="readout" class="readout"
+     hx-get="/partials/now-playing" hx-trigger="every 15s" hx-swap="outerHTML"
+     data-playing="{{if and .Track .Track.Playing}}true{{else}}false{{end}}"
+     data-art="{{if .Track}}{{.Track.ArtworkURL}}{{end}}">
+  {{if not .Enabled}}
+    <p class="readout__state readout__state--idle">Turntable offline</p>
+    <p class="readout__hint">Connect Spotify to bring the record up.</p>
+  {{else if not .Track}}
+    <p class="readout__state readout__state--idle">Silent</p>
+    <p class="readout__hint">Nothing on the platter right now.</p>
+  {{else}}
+    <p class="readout__state {{if .Track.Playing}}readout__state--live{{end}}">
+      <span class="readout__dot" aria-hidden="true"></span>
+      {{if .Track.Playing}}Now playing{{else}}Last played{{end}}
+    </p>
+    <p class="readout__title">
+      {{if .Track.TrackURL}}<a href="{{.Track.TrackURL}}" target="_blank" rel="noopener">{{.Track.Title}}</a>{{else}}{{.Track.Title}}{{end}}
+    </p>
+    <p class="readout__artist">{{.Track.Artist}}</p>
+    {{if .Track.Playing}}
+    <div class="meter" role="presentation">
+      <span class="meter__fill" style="{{width .Track.Percent}}"></span>
+    </div>
+    <p class="readout__time"><span>{{.Track.Elapsed}}</span><span>{{.Track.Length}}</span></p>
+    {{end}}
+  {{end}}
+</div>
+{{end}}

@@ -1,0 +1,23 @@
+{{define "base"}}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{.Profile.Name}} — software reliability, security, and systems</title>
+  <meta name="description" content="{{.Profile.Intro}}">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:title" content="{{.Profile.Name}}">
+  <meta property="og:description" content="{{.Profile.Intro}}">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/css/app.css">
+  <script src="/static/js/htmx.min.js" defer></script>
+  <script src="/static/js/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {{template "main" .}}
+  <div id="overlay" class="overlay"></div>
+</body>
+</html>
+{{end}}

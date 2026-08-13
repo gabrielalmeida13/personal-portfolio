@@ -1,0 +1,56 @@
+{{define "panel"}}
+<div class="panel" role="dialog" aria-modal="true" aria-labelledby="panel-title">
+  <button class="panel__scrim" type="button" aria-label="Close"
+          hx-get="/panel/close" hx-target="#overlay" hx-swap="innerHTML"></button>
+
+  <article class="panel__sheet">
+    <header class="panel__head">
+      <div>
+        <p class="eyebrow">{{.Eyebrow}}</p>
+        <h2 class="panel__title" id="panel-title">{{.Title}}</h2>
+        {{if .Kicker}}<p class="panel__kicker">{{.Kicker}}</p>{{end}}
+      </div>
+      <button class="panel__close" type="button"
+              hx-get="/panel/close" hx-target="#overlay" hx-swap="innerHTML">
+        Close<span aria-hidden="true">esc</span>
+      </button>
+    </header>
+
+    {{if .Facts}}
+    <dl class="facts">
+      {{range .Facts}}
+      <div class="facts__item">
+        <dt>{{.Label}}</dt>
+        <dd>{{.Value}}</dd>
+      </div>
+      {{end}}
+    </dl>
+    {{end}}
+
+    {{range .Sections}}
+    <section class="prose">
+      {{if .Heading}}<h3 class="prose__heading">{{.Heading}}</h3>{{end}}
+      {{range .Paragraphs}}<p>{{.}}</p>{{end}}
+    </section>
+    {{end}}
+
+    {{if .Bars}}
+    <section class="bars">
+      <h3 class="prose__heading">Where the time goes</h3>
+      {{range .Bars}}
+      <div class="bar">
+        <span class="bar__label">{{.Label}}</span>
+        <span class="bar__track"><span class="bar__fill" style="{{width .Percent}}"></span></span>
+      </div>
+      {{end}}
+    </section>
+    {{end}}
+
+    {{if .Tags}}
+    <ul class="chips chips--panel">
+      {{range .Tags}}<li class="chip">{{.}}</li>{{end}}
+    </ul>
+    {{end}}
+  </article>
+</div>
+{{end}}
