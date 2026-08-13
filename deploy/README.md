@@ -43,18 +43,20 @@ Paste the private key including the `BEGIN`/`END` lines.
 
 ### 3. Prepare the server directory
 
+Run this block **from your laptop**, inside a clone of this repository. It
+copies the compose file across rather than asking you to do it by hand:
+
 ```bash
-ssh root@64.226.88.15
-mkdir -p /opt/portfolio && cd /opt/portfolio
+ssh root@64.226.88.15 'mkdir -p /opt/portfolio'
+scp deploy/docker-compose.yml root@64.226.88.15:/opt/portfolio/docker-compose.yml
+ssh root@64.226.88.15 "grep -E '^(SPOTIFY|GITHUB|CONTACT)' /root/personal-portfolio/.env.local > /opt/portfolio/.env && chmod 600 /opt/portfolio/.env"
 ```
 
-Put the production compose file there — copy `deploy/docker-compose.yml` from
-this repository — then create `/opt/portfolio/.env` with the runtime
-credentials. The existing values can be reused:
+Confirm both files landed before going further — the cutover below removes the
+running container, so an empty directory here means an outage:
 
 ```bash
-grep -E '^(SPOTIFY|GITHUB|CONTACT)' /root/personal-portfolio/.env.local > /opt/portfolio/.env
-chmod 600 /opt/portfolio/.env
+ssh root@64.226.88.15 'ls -l /opt/portfolio'
 ```
 
 The Resend and Upstash variables are not read any more and can be dropped.
@@ -75,19 +77,26 @@ The package is private by default. Either:
 
 ### 5. Cut over
 
-The current site runs as a container named `portfolio` started with plain
-`docker run`, so it holds the name and the port. Replace it:
+The old site ran as a container named `portfolio` started with plain
+`docker run`, so it held both the name and the port.
+
+Pull **first** and only remove the old container once the new image is on
+disk, so a failed pull cannot leave the host with nothing running:
 
 ```bash
+ssh root@64.226.88.15
 cd /opt/portfolio
-docker compose pull
-docker rm -f portfolio        # stops the old Next.js container
+docker compose pull                 # must succeed before continuing
+docker rm -f portfolio || true      # releases the name and port 3000
 docker compose up -d
-curl -fsS http://localhost:3000/healthz && echo && curl -sI https://gabriel-almeida.dev/ | head -1
+curl -fsS http://localhost:3000/healthz
 ```
 
-Expect `ok` and `HTTP/2 200`. Downtime is the couple of seconds between
-`rm -f` and `up -d`.
+Expect `ok`. Downtime is the couple of seconds between `rm -f` and `up -d`.
+
+If `docker compose` reports `no configuration file provided: not found`, the
+compose file never arrived — go back to step 3. Do not run `docker rm -f`
+until it is there.
 
 ---
 
