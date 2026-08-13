@@ -575,14 +575,19 @@ button.card:hover .card__cue { opacity: 1; }
 
 /* --- stack ---------------------------------------------------------------- */
 
-/* Groups flow into as many columns as fit, so the stack stays readable as
-   categories are added. */
+/* Multi-column rather than a grid: the browser balances column heights for
+   whatever number of groups exist, so a set that does not divide evenly into
+   the track count never strands one group alone on a row of its own. */
 .stack {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
-  gap: 1.4rem 1.8rem;
+  columns: 250px 4;
+  column-gap: 2rem;
   margin-top: 0.5rem;
 }
+.stack__group {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+}
+.stack__group:last-child { margin-bottom: 0; }
 .stack__label {
   font-family: var(--mono);
   font-size: 0.68rem;

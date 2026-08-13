@@ -60,7 +60,7 @@ func Me() Profile {
 	return Profile{
 		Name:     "Gabriel Almeida",
 		Role:     "Researcher · CTF Player · Software Engineer",
-		Study:    "BSc Informatics Engineering",
+		Study:    "MSc Informatics Engineering",
 		Location: "University of Coimbra",
 		Intro:    "I work on software reliability — how systems fail, and what makes them fail less. Currently studying how large language models change the shape of that problem.",
 	}
