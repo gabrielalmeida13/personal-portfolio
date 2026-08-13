@@ -24,11 +24,11 @@
 }
 
 :root {
-  --void: #070a10;
-  --panel: #0b0f18;
-  --panel-hi: #0e1421;
-  --line: #182031;
-  --line-hi: #26314a;
+  --void: #0a1018;
+  --panel: #0d1421;
+  --panel-hi: #111a2a;
+  --line: #1c2436;
+  --line-hi: #2b3852;
   --text: #e4e8f0;
   --dim: #98a2b3;
   --muted: #6f7a8c;
@@ -76,11 +76,23 @@ body::before {
   pointer-events: none;
   background: repeating-radial-gradient(
     circle at 86% -6%,
-    rgba(148, 163, 184, 0.07) 0 1px,
+    rgba(148, 163, 184, 0.09) 0 1px,
     transparent 1px 68px
   );
   -webkit-mask-image: radial-gradient(circle at 86% -6%, #000 0%, rgba(0, 0, 0, 0.35) 45%, transparent 72%);
   mask-image: radial-gradient(circle at 86% -6%, #000 0%, rgba(0, 0, 0, 0.35) 45%, transparent 72%);
+}
+
+/* Grain, generated inline: dark flat fields band badly and read as plastic.
+   Desaturated fractal noise at very low opacity gives the page a surface. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");
 }
 
 h1, h2, h3 { margin: 0; font-weight: 600; }
@@ -229,12 +241,29 @@ img { max-width: 100%; display: block; }
   aspect-ratio: 1;
 }
 
+/* Platter halo — gives the disc a surface and lifts its silhouette off the
+   page without drawing a literal turntable. */
+.platter::before {
+  content: "";
+  position: absolute;
+  inset: -8%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(122, 152, 205, 0.13) 0%,
+    rgba(122, 152, 205, 0.05) 52%,
+    transparent 71%
+  );
+  z-index: 0;
+}
+
 .record {
   position: absolute;
   inset: 0;
+  z-index: 1;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 33% 27%, #262d3b 0%, #141a24 24%, #0b0f17 56%, #06080d 100%);
+    radial-gradient(circle at 33% 27%, #232b3a 0%, #11161f 24%, #080c13 56%, #04060a 100%);
   box-shadow:
     0 26px 60px rgba(0, 0, 0, 0.55),
     inset 0 0 0 1px rgba(255, 255, 255, 0.035);
