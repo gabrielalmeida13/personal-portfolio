@@ -24,14 +24,14 @@
 }
 
 :root {
-  --void: #0a1018;
-  --panel: #0d1421;
-  --panel-hi: #111a2a;
-  --line: #1c2436;
-  --line-hi: #2b3852;
-  --text: #e4e8f0;
-  --dim: #98a2b3;
-  --muted: #6f7a8c;
+  --void: #161f2c;
+  --panel: #1c2634;
+  --panel-hi: #222d3d;
+  --line: #2c384c;
+  --line-hi: #3f4c66;
+  --text: #eaeef4;
+  --dim: #acb6c6;
+  --muted: #8590a1;
 
   /* One accent family. Deep blue carries every interactive surface; the
      brightest step is reserved for live state, so "the machine is telling you
@@ -76,7 +76,7 @@ body::before {
   pointer-events: none;
   background: repeating-radial-gradient(
     circle at 86% -6%,
-    rgba(148, 163, 184, 0.09) 0 1px,
+    rgba(200, 215, 235, 0.11) 0 1px,
     transparent 1px 68px
   );
   -webkit-mask-image: radial-gradient(circle at 86% -6%, #000 0%, rgba(0, 0, 0, 0.35) 45%, transparent 72%);
@@ -91,7 +91,7 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.055;
+  opacity: 0.04;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");
 }
 
