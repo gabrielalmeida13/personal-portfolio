@@ -78,7 +78,6 @@ type pageData struct {
 	Profile     content.Profile
 	Panels      []content.Panel
 	Repos       []github.Repo
-	CoreSkills  []string
 	SkillGroups []content.SkillGroup
 	Record      recordData
 	Contact     contactData
@@ -102,7 +101,6 @@ func (s *Server) handleIndex(w http.ResponseWriter, r *http.Request) {
 	data := pageData{
 		Profile:     content.Me(),
 		Panels:      content.Panels(),
-		CoreSkills:  content.CoreSkills(),
 		SkillGroups: content.SkillGroups(),
 		Record:      s.record(r.Context()),
 		Contact: contactData{

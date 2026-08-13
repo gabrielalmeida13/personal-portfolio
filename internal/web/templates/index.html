@@ -23,8 +23,6 @@
       <a class="btn" href="/static/cv.pdf" target="_blank" rel="noopener">Read the CV</a>
       <a class="btn" href="{{.Contact.GitHub}}" target="_blank" rel="noopener">GitHub</a>
     </div>
-
-    <p class="status"><span class="status__dot" aria-hidden="true"></span>{{.Profile.Available}}</p>
   </div>
 
   <div class="masthead__deck">
@@ -45,7 +43,17 @@
   </button>
   {{end}}
 
-  <section class="card card--static card--repos" aria-labelledby="repos-heading">
+  <section class="card card--static card--contact" aria-labelledby="contact-heading">
+    <span class="card__eyebrow" id="contact-heading">Get in Touch</span>
+    <p class="contact__line">Research collaboration, internships, or a problem worth arguing about.</p>
+    <div class="contact__links">
+      <a href="mailto:{{.Contact.Email}}">Email</a>
+      <a href="{{.Contact.LinkedIn}}" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="{{.Contact.GitHub}}" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </section>
+
+  <section class="card card--static card--wide card--repos" aria-labelledby="repos-heading">
     <span class="card__eyebrow" id="repos-heading">Pinned repositories</span>
     {{if .Repos}}
     <ul class="repos">
@@ -66,7 +74,7 @@
     {{end}}
   </section>
 
-  <section class="card card--static card--stack" aria-labelledby="stack-heading">
+  <section class="card card--static card--wide card--stack" aria-labelledby="stack-heading">
     <span class="card__eyebrow" id="stack-heading">Stack</span>
     <div class="stack">
       {{range .SkillGroups}}
@@ -77,18 +85,6 @@
         </ul>
       </div>
       {{end}}
-    </div>
-  </section>
-
-  <section class="card card--static card--contact" aria-labelledby="contact-heading">
-    <div class="contact__intro">
-      <span class="card__eyebrow" id="contact-heading">Get in touch</span>
-      <p class="contact__line">Research collaboration, internships, or a problem worth arguing about.</p>
-    </div>
-    <div class="contact__links">
-      <a href="mailto:{{.Contact.Email}}">{{.Contact.Email}}</a>
-      <a href="{{.Contact.LinkedIn}}" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="{{.Contact.GitHub}}" target="_blank" rel="noopener">GitHub</a>
     </div>
   </section>
 

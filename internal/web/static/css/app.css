@@ -17,9 +17,9 @@
   font-display: swap;
 }
 @font-face {
-  font-family: "JetBrains Mono";
-  src: url("/static/fonts/jetbrains-mono-variable.woff2") format("woff2");
-  font-weight: 100 800;
+  font-family: "Geist Mono";
+  src: url("/static/fonts/geist-mono-variable.woff2") format("woff2");
+  font-weight: 100 900;
   font-display: swap;
 }
 
@@ -33,16 +33,17 @@
   --dim: #98a2b3;
   --muted: #6f7a8c;
 
-  /* Two accents, each with exactly one job.
-     ember  — warm, human: the record label, hover, anything inviting.
-     signal — cold, systemic: live state, focus, anything the machine reports. */
-  --ember: #c2542c;
-  --ember-hot: #e06a3c;
-  --signal: #6098e8;
+  /* One accent family. Deep blue carries every interactive surface; the
+     brightest step is reserved for live state, so "the machine is telling you
+     something right now" never looks like an ordinary link. */
+  --blue-deep: #2c5aa8;
+  --blue: #4a7fd6;
+  --blue-bright: #6ea6f0;
+  --blue-wash: rgba(74, 127, 214, 0.09);
 
   --display: "Geist", ui-sans-serif, system-ui, sans-serif;
   --body: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --shell: 1180px;
   --radius: 10px;
@@ -92,7 +93,7 @@ a { color: inherit; }
 img { max-width: 100%; display: block; }
 
 :focus-visible {
-  outline: 2px solid var(--signal);
+  outline: 2px solid var(--blue-bright);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -112,13 +113,16 @@ img { max-width: 100%; display: block; }
 
 /* --- shared type ---------------------------------------------------------- */
 
+/* Utility labels. Geist Mono at a larger size with much tighter tracking than
+   a classic "telemetry" label: wide-tracked 9px type looks the part but is
+   genuinely hard to read, and these are the labels that name every section. */
 .eyebrow {
   font-family: var(--mono);
-  font-size: 0.62rem;
+  font-size: 0.7rem;
   font-weight: 500;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--dim);
 }
 
 /* --- masthead ------------------------------------------------------------- */
@@ -161,14 +165,14 @@ img { max-width: 100%; display: block; }
 }
 .vitals__row {
   display: grid;
-  grid-template-columns: 5.5rem minmax(0, 1fr);
+  grid-template-columns: 6rem minmax(0, 1fr);
   gap: 1rem;
   align-items: baseline;
 }
 .vitals dt {
   font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -195,42 +199,17 @@ img { max-width: 100%; display: block; }
   transition: border-color 0.2s, background 0.2s, transform 0.2s;
 }
 .btn:hover {
-  border-color: var(--ember);
-  background: rgba(194, 84, 44, 0.08);
+  border-color: var(--blue);
+  background: var(--blue-wash);
   transform: translateY(-1px);
 }
 .btn--solid {
-  background: var(--ember);
-  border-color: var(--ember);
-  color: #fdf3ef;
+  background: var(--blue-deep);
+  border-color: var(--blue-deep);
+  color: #eef4ff;
 }
-.btn--solid:hover { background: var(--ember-hot); border-color: var(--ember-hot); }
+.btn--solid:hover { background: var(--blue); border-color: var(--blue); }
 
-.status {
-  margin-top: 1.7rem;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--mono);
-  font-size: 0.63rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.status__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--ember);
-  box-shadow: 0 0 0 0 rgba(194, 84, 44, 0.55);
-  animation: pulse 2.8s ease-out infinite;
-}
-
-@keyframes pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(194, 84, 44, 0.5); }
-  70%  { box-shadow: 0 0 0 7px rgba(194, 84, 44, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(194, 84, 44, 0); }
-}
 
 /* --- the record ----------------------------------------------------------- */
 
@@ -308,7 +287,7 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   display: grid;
   place-items: center;
-  background: radial-gradient(circle at 36% 30%, #a84a2a 0%, #8f3f22 45%, #6d2f19 100%);
+  background: radial-gradient(circle at 36% 30%, #24457e 0%, #1b3462 45%, #12244a 100%);
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
 }
 
@@ -323,7 +302,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--mono);
   font-size: 0.66rem;
   letter-spacing: 0.08em;
-  color: #f0d8c9;
+  color: #cfe0f8;
 }
 .record__art:not([hidden]) ~ .record__mark { display: none; }
 
@@ -352,58 +331,17 @@ img { max-width: 100%; display: block; }
 }
 .live-ring circle {
   fill: none;
-  stroke: var(--signal);
+  stroke: var(--blue-bright);
   stroke-width: 1.6;
   stroke-linecap: round;
   stroke-dasharray: 38 572;
   transform-origin: 50% 50%;
 }
 
-.tonearm {
-  position: absolute;
-  top: 7%;
-  right: 1%;
-  width: 46%;
-  height: 3px;
-  transform-origin: 100% 50%;
-  transform: rotate(-24deg);
-  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-  z-index: 3;
-}
-.tonearm__arm {
-  position: absolute;
-  inset: 0;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #4a566e 0%, #6b7894 60%, #3a4356 100%);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
-}
-.tonearm__pivot {
-  position: absolute;
-  right: -11px;
-  top: 50%;
-  width: 22px;
-  height: 22px;
-  transform: translateY(-50%);
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #566179, #262e3d);
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.65);
-}
-.tonearm__arm::before {
-  /* headshell */
-  content: "";
-  position: absolute;
-  left: -6px;
-  top: -3.5px;
-  width: 13px;
-  height: 10px;
-  border-radius: 2px;
-  background: #7b879f;
-}
 
 .platter[data-playing="true"] .record__label { animation: spin 3.4s linear infinite; }
 .platter[data-playing="true"] .live-ring { opacity: 1; }
 .platter[data-playing="true"] .live-ring circle { animation: spin 5.5s linear infinite; }
-.platter[data-playing="true"] .tonearm { transform: rotate(11deg); }
 
 @keyframes spin {
   from { transform: rotate(0deg); }
@@ -419,12 +357,12 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 0.5rem;
   font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.24em;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
 }
-.readout__state--live { color: var(--signal); }
+.readout__state--live { color: var(--blue-bright); }
 .readout__dot {
   width: 5px;
   height: 5px;
@@ -432,8 +370,8 @@ img { max-width: 100%; display: block; }
   background: var(--muted);
 }
 .readout__state--live .readout__dot {
-  background: var(--signal);
-  box-shadow: 0 0 6px var(--signal);
+  background: var(--blue-bright);
+  box-shadow: 0 0 6px var(--blue-bright);
 }
 
 .readout__title {
@@ -443,7 +381,7 @@ img { max-width: 100%; display: block; }
   color: var(--text);
 }
 .readout__title a { text-decoration: none; }
-.readout__title a:hover { color: var(--signal); }
+.readout__title a:hover { color: var(--blue-bright); }
 
 .readout__artist { font-size: 0.83rem; color: var(--dim); }
 .readout__hint { font-size: 0.78rem; color: var(--muted); }
@@ -459,7 +397,7 @@ img { max-width: 100%; display: block; }
 .meter__fill {
   display: block;
   height: 100%;
-  background: var(--signal);
+  background: var(--blue-bright);
   transition: width 1s linear;
 }
 .readout__time {
@@ -467,21 +405,28 @@ img { max-width: 100%; display: block; }
   display: flex;
   justify-content: space-between;
   font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
   color: var(--muted);
 }
 
 /* --- grid ----------------------------------------------------------------- */
 
+/* The grid sizes itself from the cards, not from a fixed column count: adding
+   a panel in content.Panels() is the whole change, at any viewport. Cards span
+   one track by default; .card--wide takes the full row for content that needs
+   the width (repositories, the stack). */
 .grid {
   max-width: var(--shell);
   margin: 0 auto;
   padding: 0 clamp(1.15rem, 4vw, 2.5rem) clamp(3rem, 8vh, 5rem);
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr));
+  grid-auto-flow: row dense;
   gap: 14px;
 }
+
+.card--wide { grid-column: 1 / -1; }
 
 .card {
   position: relative;
@@ -501,7 +446,7 @@ img { max-width: 100%; display: block; }
 
 button.card { cursor: pointer; width: 100%; }
 button.card:hover {
-  border-color: rgba(194, 84, 44, 0.5);
+  border-color: rgba(74, 127, 214, 0.55);
   background: var(--panel-hi);
   transform: translateY(-2px);
 }
@@ -514,7 +459,7 @@ button.card:hover {
   position: absolute;
   width: 11px;
   height: 11px;
-  border-color: var(--ember);
+  border-color: var(--blue);
   opacity: 0;
   transition: opacity 0.25s;
 }
@@ -527,10 +472,11 @@ button.card:focus-visible::after { opacity: 1; }
 
 .card__eyebrow {
   font-family: var(--mono);
-  font-size: 0.59rem;
-  letter-spacing: 0.22em;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--dim);
 }
 .card__title {
   font-family: var(--display);
@@ -547,33 +493,34 @@ button.card:focus-visible::after { opacity: 1; }
   margin-top: auto;
   padding-top: 0.9rem;
   font-family: var(--mono);
-  font-size: 0.59rem;
-  letter-spacing: 0.2em;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ember);
+  color: var(--blue);
   opacity: 0.65;
   transition: opacity 0.25s;
 }
 .card__cue::before { content: "→ "; }
 button.card:hover .card__cue { opacity: 1; }
 
-.card--research { grid-column: span 5; }
-.card--security { grid-column: span 4; }
-.card--jeknowledge { grid-column: span 3; }
-.card--repos { grid-column: span 7; }
-.card--stack { grid-column: span 5; }
-.card--contact { grid-column: span 12; min-height: 0; }
 
 /* --- repositories --------------------------------------------------------- */
 
-.repos { display: grid; gap: 0.9rem; margin-top: 0.35rem; }
+/* Repositories flow into columns on a wide card rather than running as one
+   long list down the left edge. */
+.repos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: 1.5rem 2rem;
+  margin-top: 0.5rem;
+}
+/* No rules between entries: in a multi-column flow the underlines end at
+   different depths and read as ragged rather than as structure. */
 .repo {
   display: grid;
   gap: 0.25rem;
-  padding-bottom: 0.9rem;
-  border-bottom: 1px solid var(--line);
+  align-content: start;
 }
-.repo:last-child { border-bottom: 0; padding-bottom: 0; }
 .repo__link {
   font-family: var(--display);
   font-size: 0.95rem;
@@ -582,7 +529,7 @@ button.card:hover .card__cue { opacity: 1; }
   text-decoration: none;
   width: fit-content;
 }
-.repo__link:hover { color: var(--ember-hot); }
+.repo__link:hover { color: var(--blue-bright); }
 .repo__desc { font-size: 0.82rem; color: var(--dim); line-height: 1.6; }
 .repo__meta {
   display: flex;
@@ -590,8 +537,8 @@ button.card:hover .card__cue { opacity: 1; }
   gap: 1rem;
   margin-top: 0.15rem;
   font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
   color: var(--muted);
 }
 .repo__lang { display: inline-flex; align-items: center; gap: 0.4rem; }
@@ -599,21 +546,28 @@ button.card:hover .card__cue { opacity: 1; }
 
 /* --- stack ---------------------------------------------------------------- */
 
-.stack { display: grid; gap: 1.05rem; margin-top: 0.35rem; }
+/* Groups flow into as many columns as fit, so the stack stays readable as
+   categories are added. */
+.stack {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+  gap: 1.4rem 1.8rem;
+  margin-top: 0.5rem;
+}
 .stack__label {
   font-family: var(--mono);
-  font-size: 0.58rem;
+  font-size: 0.68rem;
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.5rem;
+  color: var(--dim);
+  margin-bottom: 0.6rem;
 }
 
 .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
 .chip {
   font-family: var(--mono);
-  font-size: 0.63rem;
+  font-size: 0.7rem;
   letter-spacing: 0.04em;
   padding: 0.2rem 0.5rem;
   border: 1px solid var(--line);
@@ -624,28 +578,25 @@ button.card:hover .card__cue { opacity: 1; }
 
 /* --- contact -------------------------------------------------------------- */
 
-.card--contact {
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+.contact__line { font-size: 0.85rem; color: var(--dim); line-height: 1.65; }
+.contact__links {
+  display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1.2rem 1.45rem;
+  gap: 1.2rem;
+  margin-top: auto;
+  padding-top: 0.9rem;
 }
-.contact__intro { display: grid; gap: 0.5rem; }
-.contact__line { font-size: 0.88rem; color: var(--dim); }
-.contact__links { display: flex; flex-wrap: wrap; gap: 1.4rem; }
 .contact__links a {
   font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
   text-decoration: none;
   color: var(--text);
   border-bottom: 1px solid var(--line-hi);
   padding-bottom: 2px;
   transition: border-color 0.2s, color 0.2s;
 }
-.contact__links a:hover { color: var(--ember-hot); border-color: var(--ember); }
+.contact__links a:hover { color: var(--blue-bright); border-color: var(--blue); }
 
 /* --- footer --------------------------------------------------------------- */
 
@@ -658,8 +609,8 @@ button.card:hover .card__cue { opacity: 1; }
   justify-content: space-between;
   gap: 1rem;
   font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -732,13 +683,13 @@ button.card:hover .card__cue { opacity: 1; }
   border-radius: 5px;
   color: var(--dim);
   font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.18em;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
   transition: border-color 0.2s, color 0.2s;
 }
-.panel__close:hover { color: var(--text); border-color: var(--ember); }
+.panel__close:hover { color: var(--text); border-color: var(--blue); }
 .panel__close span {
   padding-left: 0.6rem;
   border-left: 1px solid var(--line);
@@ -754,8 +705,8 @@ button.card:hover .card__cue { opacity: 1; }
 }
 .facts dt {
   font-family: var(--mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.2em;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 0.4rem;
@@ -765,11 +716,11 @@ button.card:hover .card__cue { opacity: 1; }
 .prose { padding: 1.4rem 0; border-bottom: 1px solid var(--line); }
 .prose__heading {
   font-family: var(--mono);
-  font-size: 0.6rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ember);
+  color: var(--blue);
   margin-bottom: 0.85rem;
 }
 .prose p { font-size: 0.92rem; line-height: 1.78; color: var(--dim); }
@@ -780,12 +731,12 @@ button.card:hover .card__cue { opacity: 1; }
 .bar { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: 1rem; align-items: center; }
 .bar__label {
   font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
   color: var(--muted);
 }
 .bar__track { height: 2px; background: var(--line); border-radius: 2px; overflow: hidden; }
-.bar__fill { display: block; height: 100%; background: var(--ember); }
+.bar__fill { display: block; height: 100%; background: var(--blue); }
 
 .chips--panel { margin-top: 1.4rem; }
 
@@ -803,23 +754,9 @@ button.card:hover .card__cue { opacity: 1; }
 @media (max-width: 1000px) {
   .masthead { grid-template-columns: minmax(0, 1fr); }
   .masthead__deck { order: -1; }
-  .card--research { grid-column: span 6; }
-  .card--security { grid-column: span 6; }
-  .card--jeknowledge { grid-column: span 6; }
-  .card--repos { grid-column: span 6; }
-  .card--stack { grid-column: span 6; }
-  .card--contact { grid-column: span 12; }
 }
 
 @media (max-width: 680px) {
-  .grid { grid-template-columns: minmax(0, 1fr); }
-  .card--research,
-  .card--security,
-  .card--jeknowledge,
-  .card--repos,
-  .card--stack,
-  .card--contact { grid-column: span 1; }
-  .card--contact { flex-direction: column; align-items: flex-start; }
   .vitals__row { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; }
   .footer { flex-direction: column; gap: 0.5rem; }
 }
@@ -834,5 +771,4 @@ button.card:hover .card__cue { opacity: 1; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .platter[data-playing="true"] .tonearm { transform: rotate(11deg); }
 }

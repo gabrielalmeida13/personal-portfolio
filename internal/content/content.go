@@ -49,44 +49,43 @@ type SkillGroup struct {
 
 // Profile is the identity shown in the masthead.
 type Profile struct {
-	Name      string
-	Role      string
-	Study     string
-	Location  string
-	Available string
-	Intro     string
+	Name     string
+	Role     string
+	Study    string
+	Location string
+	Intro    string
 }
 
 func Me() Profile {
 	return Profile{
-		Name:      "Gabriel Almeida",
-		Role:      "Researcher · CTF player · Software developer",
-		Study:     "BSc Informatics Engineering",
-		Location:  "University of Coimbra",
-		Available: "Open to research collaboration and internships",
-		Intro:     "I work on software reliability — how systems fail, and what makes them fail less. Currently studying how large language models change the shape of that problem.",
+		Name:     "Gabriel Almeida",
+		Role:     "Researcher · CTF Player · Software Engineer",
+		Study:    "BSc Informatics Engineering",
+		Location: "University of Coimbra",
+		Intro:    "I work on software reliability — how systems fail, and what makes them fail less. Currently studying how large language models change the shape of that problem.",
 	}
 }
 
-// SkillGroups is the full stack, grouped the way it is actually used.
+// SkillGroups is the full stack.
+//
+// The grouping separates languages from the things built with them: a language
+// appears exactly once, under Languages, and never again beside a framework
+// that happens to use it. Everything else is grouped by the job it does.
 func SkillGroups() []SkillGroup {
 	return []SkillGroup{
-		{Label: "Frontend", Skills: []string{"React", "Next.js", "TypeScript", "Tailwind CSS"}},
-		{Label: "Backend", Skills: []string{"Go", "Node.js", "Python", "Ruby on Rails", "Django", "PostgreSQL"}},
-		{Label: "Infrastructure", Skills: []string{"Docker", "GitHub Actions", "Linux", "Ollama"}},
-		{Label: "Security & research", Skills: []string{"Reverse engineering", "Data analysis", "LLM prompting"}},
-		{Label: "Languages", Skills: []string{"C", "C++", "Java"}},
+		{Label: "Languages", Skills: []string{"Go", "Rust", "Python", "TypeScript", "Java", "C", "C++", "SQL"}},
+		{Label: "Backend & APIs", Skills: []string{"FastAPI", "Ruby on Rails", "Django", "Node.js", "LangChain"}},
+		{Label: "Frontend", Skills: []string{"React", "Next.js", "HTMX", "Tailwind CSS"}},
+		{Label: "Data & Storage", Skills: []string{"PostgreSQL", "ChromaDB", "Redis", "Vector Search", "BM25"}},
+		{Label: "Infrastructure", Skills: []string{"Docker", "Linux", "GitHub Actions", "Ollama"}},
+		{Label: "Security & Research", Skills: []string{"Reverse Engineering", "Binary Exploitation", "Anomaly Detection", "Reliability Modelling"}},
 	}
 }
 
-// CoreSkills is the short list shown on the collapsed stack card.
-func CoreSkills() []string {
-	return []string{"Go", "TypeScript", "Python", "PostgreSQL", "Docker"}
-}
-
-// Panels returns every panel in display order.
+// Panels returns every panel in display order. Adding one here is the only
+// step needed to put a new card on the page.
 func Panels() []Panel {
-	return []Panel{research(), security(), jeknowledge()}
+	return []Panel{research(), security(), chatbot(), jeknowledge(), exchange()}
 }
 
 // PanelByID finds a panel for the expand request. The second return reports
@@ -105,7 +104,7 @@ func research() Panel {
 	return Panel{
 		ID:      "research",
 		Eyebrow: "Research",
-		Title:   "Software reliability under LLMs",
+		Title:   "Software Reliability under LLMs",
 		Summary: "An empirical study on whether pairing developers with generated code makes systems fail less. Under review at ISSRE 2026.",
 		Kicker:  "University of Coimbra · DEI · CISUC",
 		Facts: []Fact{
@@ -115,20 +114,20 @@ func research() Panel {
 		},
 		Sections: []Section{
 			{
-				Heading: "LLM-based software reliability",
+				Heading: "LLM-Based Software Reliability",
 				Paragraphs: []string{
 					"A large-scale empirical study of how large language models affect software reliability, and of the human-AI collaboration strategies that hold up in practice. The central finding so far: pairing a human developer with LLM-generated code measurably reduces critical system failures.",
 					"The study evaluates 1-out-of-2 fault-tolerant configurations using the classical Eckhardt-Lee and Littlewood-Miller reliability models. It measures failure overlap across three algorithmic specifications, 14 distinct models, and four languages — C, C++, Java and Pascal.",
 				},
 			},
 			{
-				Heading: "Talentos@DEI scholarship",
+				Heading: "Talentos@DEI Scholarship",
 				Paragraphs: []string{
 					"A research initiation scholarship, January to July 2024, implementing methods to recognise anomalous patterns in complex datasets.",
 				},
 			},
 		},
-		Tags: []string{"Software diversity", "Fault tolerance", "Large language models", "Reliability engineering", "Anomaly detection"},
+		Tags: []string{"Software Diversity", "Fault Tolerance", "Large Language Models", "Reliability Engineering", "Anomaly Detection"},
 	}
 }
 
@@ -136,17 +135,17 @@ func security() Panel {
 	return Panel{
 		ID:      "security",
 		Eyebrow: "Security",
-		Title:   "CTF player & challenge author",
+		Title:   "CTF Player & Challenge Author",
 		Summary: "Competing internationally and writing the challenges others compete on, at the CISUC cybersecurity laboratory.",
 		Kicker:  "CyberSecurity Laboratory · CISUC · University of Coimbra",
 		Facts: []Fact{
 			{Label: "Period", Value: "Sep 2025 — present"},
-			{Label: "Role", Value: "Member & CTF player"},
-			{Label: "Scope", Value: "International competitions"},
+			{Label: "Role", Value: "Member & CTF Player"},
+			{Label: "Scope", Value: "International Competitions"},
 		},
 		Sections: []Section{
 			{
-				Heading: "Challenge development",
+				Heading: "Challenge Development",
 				Paragraphs: []string{
 					"Designing and building technical challenges for academic CTF competitions, aimed at making security legible to students and researchers who do not otherwise touch it.",
 				},
@@ -165,12 +164,49 @@ func security() Panel {
 			},
 		},
 		Bars: []Bar{
-			{Label: "Reverse eng.", Percent: 85},
+			{Label: "Reverse Eng.", Percent: 85},
 			{Label: "Web", Percent: 78},
-			{Label: "Binary expl.", Percent: 70},
+			{Label: "Binary Expl.", Percent: 70},
 			{Label: "Crypto", Percent: 55},
 		},
-		Tags: []string{"Reverse engineering", "Binary exploitation", "Web security", "Cryptography", "Challenge design"},
+		Tags: []string{"Reverse Engineering", "Binary Exploitation", "Web Security", "Cryptography", "Challenge Design"},
+	}
+}
+
+func chatbot() Panel {
+	return Panel{
+		ID:      "chatbot",
+		Eyebrow: "Development",
+		Title:   "RAG Platform for CISUC",
+		Summary: "A retrieval-augmented chatbot answering questions from CISUC's institutional knowledge base. AI architecture and scalable systems.",
+		Kicker:  "Centre for Informatics and Systems · University of Coimbra",
+		Facts: []Fact{
+			{Label: "Role", Value: "Developer"},
+			{Label: "Focus", Value: "AI Architecture & Scalable Systems"},
+			{Label: "Repository", Value: "chatbot-cisuc"},
+		},
+		Sections: []Section{
+			{
+				Heading: "Orchestration",
+				Paragraphs: []string{
+					"Architected and implemented a Retrieval-Augmented Generation platform, building the orchestrator with FastAPI and LangChain. Every request is validated and routed centrally, so the interface never talks to the retrieval layer or the vector store directly and business logic stays in one place.",
+					"The language model is pluggable between a locally hosted Ollama instance and a hosted provider, which keeps evaluation runs cheap and deployment flexible.",
+				},
+			},
+			{
+				Heading: "Hybrid Retrieval",
+				Paragraphs: []string{
+					"Retrieval combines lexical search over a BM25 index with semantic search over embeddings in ChromaDB, merged by reciprocal rank fusion before the context is handed to the model. Separating retrieval from generation means an improvement in retrieval quality benefits every supported model without touching the runtime.",
+				},
+			},
+			{
+				Heading: "Service Architecture",
+				Paragraphs: []string{
+					"Four independent services — interface, orchestrator, retrieval API and vector database — behind a reverse proxy, each deployable on its own, alongside a preprocessing pipeline that builds the knowledge base out of band so requests never pay for indexing.",
+				},
+			},
+		},
+		Tags: []string{"RAG", "FastAPI", "LangChain", "Ollama", "ChromaDB", "BM25", "Vector Search", "Python"},
 	}
 }
 
@@ -178,13 +214,13 @@ func jeknowledge() Panel {
 	return Panel{
 		ID:      "jeknowledge",
 		Eyebrow: "Experience",
-		Title:   "Junior software developer",
+		Title:   "Junior Software Developer",
 		Summary: "Full-stack work at jeKnowledge, the student-run junior enterprise. Promoted out of the trainee track in under three months.",
-		Kicker:  "jeKnowledge · Junior enterprise",
+		Kicker:  "jeKnowledge · Junior Enterprise",
 		Facts: []Fact{
 			{Label: "Period", Value: "Mar 2025 — Oct 2025"},
-			{Label: "Role", Value: "Junior software developer"},
-			{Label: "Progression", Value: "Promoted from trainee"},
+			{Label: "Role", Value: "Junior Software Developer"},
+			{Label: "Progression", Value: "Promoted from Trainee"},
 		},
 		Sections: []Section{
 			{
@@ -195,5 +231,28 @@ func jeknowledge() Panel {
 			},
 		},
 		Tags: []string{"React", "Ruby on Rails", "Node.js", "TypeScript", "Agile"},
+	}
+}
+
+func exchange() Panel {
+	return Panel{
+		ID:      "exchange",
+		Eyebrow: "Exchange",
+		Title:   "University of Tartu",
+		Summary: "Erasmus+ exchange semester at the Institute of Computer Science, on the MSc in Software Engineering. From August 2026.",
+		Kicker:  "Institute of Computer Science · Tartu, Estonia",
+		Facts: []Fact{
+			{Label: "Period", Value: "Aug 2026 — Feb 2027"},
+			{Label: "Programme", Value: "Erasmus+ Exchange Semester"},
+			{Label: "Level", Value: "MSc in Software Engineering"},
+		},
+		Sections: []Section{
+			{
+				Paragraphs: []string{
+					"A six-month exchange at the Institute of Computer Science of the University of Tartu, studying at master's level in software engineering.",
+				},
+			},
+		},
+		Tags: []string{"Erasmus+", "Software Engineering", "Estonia"},
 	}
 }

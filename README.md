@@ -18,7 +18,7 @@ and a grid of panels that open in place.
 | Routing | `http.ServeMux` method + pattern routing (no router dependency) |
 | Front end | Server-rendered HTML, HTMX 2 for fragments, ~50 lines of vanilla JS |
 | Styling | Hand-written CSS with custom properties |
-| Fonts | Geist, Inter, JetBrains Mono — self-hosted, no CDN |
+| Fonts | Geist, Geist Mono, Inter — self-hosted, no CDN |
 | Integrations | Spotify Web API (now playing), GitHub GraphQL (pinned repos) |
 | Deploy | Docker, self-hosted |
 
