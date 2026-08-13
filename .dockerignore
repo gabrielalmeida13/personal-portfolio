@@ -1,34 +1,34 @@
-# Build artifacts -- re-generated inside the container
-.next
-node_modules
+# Only the Go module and its embedded assets need to reach the build context.
 
 # Version control
 .git
 .gitignore
 
-# Environment files -- secrets must never be baked into the image.
-# Pass them at runtime via docker-compose env_file or --env-file.
+# Secrets must never be baked into the image; they are passed at runtime
+# through docker-compose env_file.
 .env
 .env.local
 .env.*.local
 
-# Keep the example file so the COPY . . in the builder stage includes it.
-!.env.example
+# Build output
+bin/
 
-# Development-only files
+# Documentation and tooling
 *.md
 docs/
-darksideofthemoon.jpg
-abstract_design.glb
+Makefile
+.claude/
+.superpowers/
+
+# Separate repository (LaTeX CV)
+personal-cv/
+
+# Docker files
+Dockerfile*
+docker-compose*.yml
+.dockerignore
 
 # OS / editor noise
 .DS_Store
 Thumbs.db
 *.log
-npm-debug.log*
-pnpm-debug.log*
-
-# Docker files (not needed inside the image)
-Dockerfile*
-docker-compose*.yml
-.dockerignore
